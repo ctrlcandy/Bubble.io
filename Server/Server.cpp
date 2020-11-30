@@ -45,24 +45,24 @@ void Server::send(sf::Packet& clientInfo) {
 				adresses[i].time = time(NULL);
 				findAdress = true;
 
-				// Player id (skip)
+				/// Player id (skip)
 				pos = clientInfoStr.find(delimiter);
 				buf += clientInfoStr.substr(0, pos);
 				clientInfoStr.erase(0, pos + delimiter.length());
 
-				// Radius
+				/// Radius
 				pos = clientInfoStr.find(delimiter);
 				adresses[i].bubble.setRadius(atoi(clientInfoStr.substr(0, pos).c_str()));
 				buf += clientInfoStr.substr(0, pos);
 				clientInfoStr.erase(0, pos + delimiter.length());
 
-				// x coordinate
+				/// x coordinate
 				pos = clientInfoStr.find(delimiter);
 				float xc = atoi(clientInfoStr.substr(0, pos).c_str());
 				buf += clientInfoStr.substr(0, pos);
 				clientInfoStr.erase(0, pos + delimiter.length());
 
-				// y coordinate
+				/// y coordinate
 				pos = clientInfoStr.find(delimiter);
 				float yc = atoi(clientInfoStr.substr(0, pos).c_str());
 				buf += clientInfoStr.substr(0, pos);
@@ -70,7 +70,7 @@ void Server::send(sf::Packet& clientInfo) {
 
 				adresses[i].bubble.setPosition(xc, yc);
 
-				// score (skip)
+				/// score (skip)
 				pos = clientInfoStr.find(delimiter);
 				buf += clientInfoStr.substr(0, pos);
 				clientInfoStr.erase(0, pos + delimiter.length());
@@ -108,7 +108,6 @@ void Server::send(sf::Packet& clientInfo) {
 				y = atoi(clientInfoStr.substr(0, pos).c_str());
 				clientInfoStr.erase(0, pos + delimiter.length());
 
-				//std::cout << index << " " << x << "  " << y << std::endl;
 				feed[index].setPosition(rand() % 2950, rand() % 2950);
 				coordinates += "\n" + std::to_string(index) +
 					"\n" + std::to_string(feed[index].getPosition().x) +
@@ -154,7 +153,7 @@ void Server::send(sf::Packet& clientInfo) {
 
 	std::size_t currTime = time(NULL);
 	for (std::size_t i = 0; i < adresses.size(); ++i) {
-		if ((currTime - adresses[i].time) > 2) {
+		if ((currTime - adresses[i].time) > 3) {
 			std::cout << " ...!! Delete: " << "IP " << adresses[i].Ip << " port " << adresses[i].port << '\n';
 			std::cout << " ...!! Do not connect " << currTime - adresses[i].time << " seconds" << '\n';
 			adresses.erase(adresses.begin() + i);
