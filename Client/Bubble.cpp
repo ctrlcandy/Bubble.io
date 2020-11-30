@@ -1,3 +1,7 @@
+/*!	\file Bubble.cpp
+*   \brief File includes implementation of Bubble.h
+*/
+
 #include "Bubble.h"
 
 Bubble::Bubble() :
@@ -32,7 +36,7 @@ void Bubble::draw() {
 
 const Bubble& Bubble::operator=(const Bubble& bubble) {
 	Bubble result;
-	
+
 	result.setPlayer(bubble.player);
 	result.setPosition(bubble.getPosition());
 	result.setRadius(bubble.getRadius());

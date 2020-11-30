@@ -1,3 +1,8 @@
+/*!	\file Bubbleio.h
+*   \brief File includes declaration of functions that
+	responsible for sending and receiving data to/from server
+*/
+
 #pragma once
 #include <../include/SFML/Network/UdpSocket.hpp>
 #include <../include/SFML/Network/Packet.hpp>

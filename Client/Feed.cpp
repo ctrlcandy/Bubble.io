@@ -1,3 +1,7 @@
+/*!	\file Feed.cpp
+*   \brief File includes implementation of Feed.h
+*/
+
 #include "Feed.h"
 
 Feed::Feed() {

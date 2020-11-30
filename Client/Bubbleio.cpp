@@ -1,5 +1,8 @@
+/*!	\file Bubbleio.cpp
+*   \brief File includes implementation of Bubbleio.h
+*/
+
 #include "Bubbleio.h"
-#include <iostream>
 
 void Bubbleio::play() {
 	Bubbleio bubbleio;
@@ -8,7 +11,7 @@ void Bubbleio::play() {
 
 void Bubbleio::drawGame() {
 	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Bubble.io", sf::Style::None);
-	sf::View view(sf::Vector2f(0.f, 0.f), sf::Vector2f(SCREEN_WIDTH/2.f, SCREEN_HEIGHT/2.f));
+	sf::View view(sf::Vector2f(0.f, 0.f), sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
 
 	window.setFramerateLimit(60);
 
@@ -23,7 +26,7 @@ void Bubbleio::drawGame() {
 	feed.setWindow(window);
 
 	std::vector<std::pair<std::size_t, sf::Vector2f>> newFeedPositions;
-	
+
 	sf::RectangleShape rectangle;
 	rectangle.setSize(sf::Vector2f(3000, 3000));
 	rectangle.setPosition(0, 0);
@@ -72,7 +75,11 @@ void Bubbleio::drawGame() {
 		}
 
 		client.send(bubble, newFeedPositions);
-		client.receive(feed);
+
+		std::thread th([&]() {
+			client.receive(feed);
+			});
+		th.detach();
 
 		window.clear();
 
@@ -87,7 +94,7 @@ void Bubbleio::drawGame() {
 		window.draw(scoreCount);
 
 		update(bubble, feed, newFeedPositions);
-	
+
 		for (std::size_t i = 1; i < client.users.size(); ++i) {
 			client.users[i].bubble.setWindow(window);
 			client.users[i].bubble.draw();
@@ -95,8 +102,8 @@ void Bubbleio::drawGame() {
 
 		window.display();
 
+		/// \todo Correctly show players' intersection
 		if (client.gameOver) {
-			std::cout << "Game over!" << std::endl;
 			end();
 		}
 	}
@@ -131,7 +138,7 @@ void Bubbleio::end() {
 				}
 			}
 		}
-		std::cout << "The end!" << std::endl;
+
 		endText.setPosition(SCREEN_WIDTH, SCREEN_HEIGHT);
 		window.display();
 	}

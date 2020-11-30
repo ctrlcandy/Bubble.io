@@ -1,10 +1,12 @@
+/*!	\file Client.cpp
+*   \brief File includes implementation of Client.h
+*/
+
 #include "Client.h"
-#include <iostream>
 
 Client::Client() {
 	socket.bind(sf::UdpSocket::AnyPort);
 	User user;
-
 	user.ip = sf::IpAddress::getLocalAddress().toString();
 	user.port = socket.getLocalPort();
 
@@ -54,7 +56,7 @@ void Client::receive(Feed& f) {
 			pos = clientInfoStr.find(delimiter);
 			y = atoi(clientInfoStr.substr(0, pos).c_str());
 			clientInfoStr.erase(0, pos + delimiter.length());
-			
+
 			f[i].setPosition(x, y);
 		}
 		connected = true;
@@ -75,7 +77,6 @@ void Client::receive(Feed& f) {
 
 			if ((users[0].ip == ip) && (users[0].port == port)) {
 				users.clear();
-				std::cout << "Find me!" << std::endl;
 				SERVER_IP_ADDRESS = "";
 				SERVER_PORT = 0;
 				gameOver = true;
@@ -138,7 +139,7 @@ void Client::receive(Feed& f) {
 		users[index].bubble.setScore(atoi(clientInfoStr.substr(0, pos).c_str()));
 		clientInfoStr.erase(0, pos + delimiter.length());
 
-		// Update feed
+		/// Update feed
 		while (pos != -1) {
 			pos = clientInfoStr.find(delimiter);
 			index = atoi(clientInfoStr.substr(0, pos).c_str());

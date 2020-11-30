@@ -1,3 +1,8 @@
+/*!	\file Bubble.h
+*   \brief File includes declaration of Bubble functions that
+	responsible for displaying the player
+*/
+
 #pragma once
 
 #include <SFML/Graphics.hpp>
@@ -7,8 +12,8 @@ class Bubble
 	sf::RenderWindow* window;
 	sf::CircleShape circle;
 
-	std::string player; 
-	std::size_t score; 
+	std::string player;
+	std::size_t score;
 	float speed;
 
 public:

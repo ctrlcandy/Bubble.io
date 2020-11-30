@@ -1,3 +1,8 @@
+/*!	\file Bubbleio.h
+*   \brief File includes declaration of functions that
+	responsible for displaying the game
+*/
+
 #pragma once
 
 #include <SFML/Graphics.hpp>
@@ -13,7 +18,7 @@
 class Bubbleio
 {
 	float SCREEN_WIDTH = 1920;
-	float SCREEN_HEIGHT = 1080; 
+	float SCREEN_HEIGHT = 1080;
 	std::vector<Bubble> users;
 
 	bool firstScreenCheck = false;

@@ -1,3 +1,8 @@
+/*!	\file Bubbleio.h
+*   \brief File includes declaration of functions that
+	responsible for displaying the feed
+*/
+
 #pragma once
 
 #include <SFML/Graphics.hpp>
@@ -6,7 +11,7 @@
 
 class Feed
 {
-	sf::RenderWindow* window; 
+	sf::RenderWindow* window;
 	std::vector<sf::CircleShape> circles;
 
 public:

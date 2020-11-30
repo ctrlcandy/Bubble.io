@@ -7,18 +7,18 @@ project(Bubbleio VERSION 0.0.1 LANGUAGES CXX)
 #Source .cpp list
 set(SOURCES
 	main.cpp
+	Client.cpp
 	Bubble.cpp
 	Bubbleio.cpp
 	Feed.cpp
-	Client.cpp
 )
 
 #Source .h list
 set(HEADERS
+	Client.h
 	Bubble.h
 	Bubbleio.h
 	Feed.h
-	Client.h
 )
 
 #Creates executable named Bubbleio
