@@ -1,21 +1,53 @@
 #include "Bubble.h"
 
-Bubble::Bubble(sf::RenderWindow& window, size_t player) {
-	score = 0;
-	speed = 7;
-	this->player = player;
-	this->window = &window;
-
+Bubble::Bubble() :
+	player("Null"),
+	score(0),
+	speed(7),
+	window(nullptr)
+{
 	circle.setRadius(20);
-	circle.setPosition(rand() % 1990, rand() % 1990);
 	circle.setOrigin(20, 20);
-	circle.setFillColor(sf::Color::Green);
+	circle.setPosition(rand() % 1990, rand() % 1990);
+	circle.setFillColor(sf::Color::Magenta);
 	circle.setOutlineColor(sf::Color::Black);
 	circle.setOutlineThickness(1);
+};
+
+Bubble::Bubble(const std::string& player) : Bubble() {
+	this->player = player;
+}
+
+Bubble::Bubble(sf::RenderWindow& window, const std::string& player) : Bubble(player) {
+	this->window = &window;
+}
+
+void Bubble::setWindow(sf::RenderWindow& window) {
+	this->window = &window;
 }
 
 void Bubble::draw() {
 	window->draw(circle);
+}
+
+const Bubble& Bubble::operator=(const Bubble& bubble) {
+	Bubble result;
+	
+	result.setPlayer(bubble.player);
+	result.setPosition(bubble.getPosition());
+	result.setRadius(bubble.getRadius());
+	result.setScore(bubble.score);
+	result.setSpeed(bubble.speed);
+
+	return result;
+}
+
+std::string Bubble::getPlayer() const {
+	return player;
+}
+
+void Bubble::setPlayer(const std::string& p) {
+	player = p;
 }
 
 float Bubble::getSpeed() const {
@@ -23,7 +55,7 @@ float Bubble::getSpeed() const {
 }
 
 void Bubble::setSpeed(const float speed) {
-	if (speed > 0) {
+	if (speed > 1) {
 		this->speed = speed;
 	}
 	else {
@@ -40,15 +72,27 @@ void Bubble::setRadius(const float radius) {
 	circle.setRadius(radius);
 }
 
-const sf::Vector2f& Bubble::getPosition() const {
+sf::Vector2f Bubble::getPosition() const {
 	return circle.getPosition();
 }
 
-size_t Bubble::getScore() const {
+void Bubble::setPosition(const sf::Vector2f& coordinates) {
+	circle.setPosition(coordinates);
+}
+
+void Bubble::setPosition(const float x, const float y) {
+	circle.setPosition(x, y);
+}
+
+std::size_t Bubble::getScore() const {
 	return score;
 }
 
-void Bubble::increaseScore(const size_t value) {
+void Bubble::setScore(const std::size_t score) {
+	this->score = score;
+}
+
+void Bubble::increaseScore(const std::size_t value) {
 	score += value;
 }
 

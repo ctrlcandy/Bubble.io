@@ -8,14 +8,14 @@ project(Bubbleio VERSION 0.0.1 LANGUAGES CXX)
 set(SOURCES
 	main.cpp
 	Bubble.cpp
-	Bubbleio.cpp
+	Server.cpp
 	Feed.cpp
 )
 
 #Source .h list
 set(HEADERS
 	Bubble.h
-	Bubbleio.h
+	Server.h
 	Feed.h
 )
 
