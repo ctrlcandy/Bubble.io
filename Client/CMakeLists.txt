@@ -11,6 +11,8 @@ set(SOURCES
 	Bubble.cpp
 	Bubbleio.cpp
 	Feed.cpp
+	Menu.cpp
+	Game.cpp
 )
 
 #Source .h list
@@ -19,6 +21,8 @@ set(HEADERS
 	Bubble.h
 	Bubbleio.h
 	Feed.h
+	Menu.h
+	Game.h
 )
 
 #Creates executable named Bubbleio
